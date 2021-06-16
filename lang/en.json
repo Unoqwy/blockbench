@@ -501,6 +501,8 @@
 	"settings.username.desc": "Username for edit sessions",
 	"settings.streamer_mode": "Streamer Mode",
 	"settings.streamer_mode.desc": "Hides sensitive information like recent models",
+	"settings.advanced_settings": "Advanced Settings",
+	"settings.advanced_settings.desc": "Show advanced settings to tailor some specific behaviors, they will be discerned with a yellow color",
 
 	"settings.interface_scale": "Interface Scale",
 	"settings.interface_scale.desc": "Scale of the entire Blockbench interface",
@@ -635,6 +637,8 @@
 	"settings.automatic_updates.desc": "Automatically download new versions and keep Blockbench up-to-date",
 	"settings.hardware_acceleration": "Hardware Acceleration",
 	"settings.hardware_acceleration.desc": "Outsource rendering tasks to the graphics card. Restart Blockbench to apply changes",
+	"settings.native_window_frame": "Native Window Frame",
+	"settings.native_window_frame.desc": "Force the application to display native window frame. This is meant for specific use cases and will result in a doubled title bar for most users. Restart Blockbench to apply changes",
 
 	"category.navigate": "Navigation",
 	"category.tools": "Tools",

@@ -372,7 +372,7 @@
 					</h3>
 					<ul v-if="category.open">
 
-						<li v-for="(setting, key) in category.items" v-if="Condition(setting.condition)" v-on="setting.click ? {click: setting.click} : {}">
+						<li v-for="(setting, key) in category.items" v-if="setting.isAvailable()" v-on="setting.click ? {click: setting.click} : {}">
 							<template v-if="setting.type === 'number'">
 								<div class="setting_element"><input type="number" v-model.number="setting.value" :min="setting.min" :max="setting.max" :step="setting.step" v-on:input="saveSettings()"></div>
 							</template>
@@ -380,7 +380,9 @@
 								<div class="setting_element setting_icon" v-html="Blockbench.getIconNode(setting.icon).outerHTML"></div>
 							</template>
 							<template v-else-if="setting.type == 'toggle'"><!--TOGGLE-->
-								<div class="setting_element"><input type="checkbox" v-model="setting.value" v-bind:id="'setting_'+key" v-on:click="saveSettings()"></div>
+								<div class="setting_element" v-bind:class="{'setting_element_advanced': setting.advanced}">
+									<input type="checkbox" v-model="setting.value" v-bind:id="'setting_'+key" v-on:click="saveSettings()">
+								</div>
 							</template>
 
 							<label class="setting_label" v-bind:for="'setting_'+key">

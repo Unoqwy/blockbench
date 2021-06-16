@@ -27,6 +27,7 @@ class Setting {
 		this.name = data.name || tl(`settings.${id}`);
 		this.description = data.description || tl(`settings.${id}.desc`);
 		this.launch_setting = data.launch_setting || false;
+		this.advanced = data.advanced || false;
 
 		if (this.type == 'number') {
 			this.min = data.min;
@@ -87,6 +88,12 @@ class Setting {
 			this.onChange(this.value);
 		}
 	}
+	isAvailable() {
+		if (this.advanced && !settings.advanced_settings.value) {
+			return false;
+		}
+		return Condition(this.condition);
+	}
 }
 
 const Settings = {
@@ -104,6 +111,7 @@ const Settings = {
 			StartScreen.vue._data.redact_names = settings.streamer_mode.value;
 			updateStreamerModeNotification();
 		}});
+		new Setting('advanced_settings', {value: false, type: 'toggle'});
 
 		//Interface
 		new Setting('interface_scale', 		{category: 'interface', value: 100, min: 40, max: 200, type: 'number', condition: isApp, onChange() {
@@ -229,6 +237,7 @@ const Settings = {
 		new Setting('backup_retain', {category: 'application', value: 30, type: 'number', condition: isApp});
 		new Setting('automatic_updates', {category: 'application', value: true, condition: isApp});
 		new Setting('hardware_acceleration', {category: 'application', value: true, condition: isApp, launch_setting: true});
+		new Setting('native_window_frame', {category: 'application', value: false, condition: isApp, launch_setting: true, advanced: true});
 		
 		//Export
 		new Setting('minifiedout', {category: 'export', value: false});
